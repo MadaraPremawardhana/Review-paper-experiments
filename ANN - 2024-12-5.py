@@ -9,6 +9,26 @@ from tensorflow.keras.layers import Dense, Dropout
 import tensorflow as tf
 import warnings
 
+# GPU-specific configuration
+gpus = tf.config.experimental.list_physical_devices('GPU')
+if gpus:
+    try:
+        # Set GPU memory growth to avoid allocating all memory
+        for gpu in gpus:
+            tf.config.experimental.set_memory_growth(gpu, True)
+        
+        # Explicitly set GPU as the visible device
+        tf.config.set_visible_devices(gpus[0], 'GPU')
+        
+        # Optional: Log device placement to confirm GPU usage
+        tf.debugging.set_log_device_placement(True)
+        
+        print(f"GPU is available and set as primary device: {gpus[0]}")
+    except RuntimeError as e:
+        print(f"Error configuring GPU: {e}")
+else:
+    print("No GPU found. CPU will be used instead.")
+
 # Suppress TensorFlow logging
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 tf.get_logger().setLevel('ERROR')
