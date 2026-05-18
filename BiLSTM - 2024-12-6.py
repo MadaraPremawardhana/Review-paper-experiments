@@ -110,7 +110,7 @@ time_steps = 5
 X_lstm, y_lstm = create_sequences(X, y, time_steps)
 
 # Step 4: Split dataset
-X_train, X_test, y_train, y_test = train_test_split(X_lstm, y_lstm, test_size=0.2, random_state=42)
+X_train, X_test, y_train, y_test = train_test_split(X_lstm, y_lstm, test_size=0.2, random_state=None)
 
 # Step 5: Define BiLSTM model
 model = Sequential([
