@@ -24,6 +24,22 @@ class SuppressOutput:
         sys.stdout.close()
         sys.stdout = self._original_stdout
 
+# GPU configuration
+os.environ['CUDA_VISIBLE_DEVICES'] = '0'  # Use first GPU, remove for CPU fallback
+
+# Configure TensorFlow GPU usage
+physical_devices = tf.config.list_physical_devices('GPU')
+if physical_devices:
+    try:
+        tf.config.experimental.set_memory_growth(physical_devices[0], True)
+        tf.config.set_visible_devices(physical_devices[0], 'GPU')
+        print(f"Running on GPU: {physical_devices[0]}")
+    except RuntimeError as e:
+        print(f"GPU configuration error: {e}")
+else:
+    print("No GPU detected. Exiting...")
+    sys.exit(1)  # Exit if GPU required
+
 file_path = 'D:/pre-digital-twin-v4/Data/2023_Jan to June_KB_ hourly.csv'
 data = pd.read_csv(file_path)
 
