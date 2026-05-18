@@ -95,7 +95,7 @@ y = y.reshape(-1, 1)
 y = scaler_y.fit_transform(y)
 
 # Split data for ANN
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=None)
 
 # Build the ANN model
 model = Sequential([
