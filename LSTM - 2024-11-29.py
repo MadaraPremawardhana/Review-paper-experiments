@@ -104,7 +104,7 @@ def create_sequences(X, y, time_steps=5):
 time_steps = 5
 X_lstm, y_lstm = create_sequences(X, y, time_steps)
 
-X_train, X_test, y_train, y_test = train_test_split(X_lstm, y_lstm, test_size=0.2, random_state=42)
+X_train, X_test, y_train, y_test = train_test_split(X_lstm, y_lstm, test_size=0.2, random_state=None)
 
 model = Sequential([
     LSTM(64, input_shape=(X_train.shape[1], X_train.shape[2]), return_sequences=True),
