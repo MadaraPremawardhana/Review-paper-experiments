@@ -58,7 +58,7 @@ if df is not None:
     X_seq, y_seq = create_sequences(X.values, seq_length)
 
     # Split into train and test sets
-    X_train, X_test, y_train, y_test = train_test_split(X_seq, y_seq, test_size=0.2, random_state=42)
+    X_train, X_test, y_train, y_test = train_test_split(X_seq, y_seq, test_size=0.2, random_state=None)
 
     # Build and train the GRU model
     model = Sequential()
